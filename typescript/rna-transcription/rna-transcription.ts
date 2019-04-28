@@ -10,7 +10,7 @@ enum DNA_NUCLEOTIDES {
 
 class Transcriptor {
     toRna(dna: string) {
-        return dna.split('').map(this.transcribeNucleotide_).join('')
+        return Array.from(dna).map(this.transcribeNucleotide_).join('')
     }
 
     private transcribeNucleotide_(nucleotide: DNANucleotide): RNANucleotide {
