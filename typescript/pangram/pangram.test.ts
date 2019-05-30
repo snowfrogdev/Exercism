@@ -6,27 +6,27 @@ describe('Pangram()', () => {
     expect(pangram.isPangram()).toBe(false)
   })
 
-  xit('pangram with only lower case', () => {
+  it('pangram with only lower case', () => {
     const pangram = new Pangram("the quick brown fox jumps over the lazy dog")
     expect(pangram.isPangram()).toBe(true)
   })
 
-  xit("missing character 'x'", () => {
+  it("missing character 'x'", () => {
     const pangram = new Pangram("a quick movement of the enemy will jeopardize five gunboats")
     expect(pangram.isPangram()).toBe(false)
   })
 
-  xit("another missing character 'x'", () => {
+  it("another missing character 'x'", () => {
     const pangram = new Pangram("the quick brown fish jumps over the lazy dog")
     expect(pangram.isPangram()).toBe(false)
   })
 
-  xit("pangram with underscores", () => {
+  it("pangram with underscores", () => {
     const pangram = new Pangram("the_quick_brown_fox_jumps_over_the_lazy_dog")
     expect(pangram.isPangram()).toBe(true)
   })
 
-  xit("pangram with numbers", () => {
+  it("pangram with numbers", () => {
     const pangram = new Pangram("the 1 quick brown fox jumps over the 2 lazy dogs")
     expect(pangram.isPangram()).toBe(true)
   })
