@@ -1,15 +1,21 @@
 export default class Pangram {
-    constructor(private sentence_: string) { }
+    private letters_: Set<String>
+    private readonly ASCII_CODE_FOR_LOWER_CASE_A = 97
+    private readonly ASCII_CODE_FOR_LOWER_CASE_Z = 122
+    constructor(sentence: string) {
+        this.letters_ = new Set<string>(sentence.toLowerCase())
+    }
 
     isPangram() {
-        if (!this.sentence_) {
-            return false
+        for (let asciiCode = this.ASCII_CODE_FOR_LOWER_CASE_A; asciiCode <= this.ASCII_CODE_FOR_LOWER_CASE_Z; asciiCode++) {
+            if (!this.hasLetter_(asciiCode)) {
+                return false
+            }
         }
-
-        if (!this.sentence_.includes('x')) {
-            return false
-        }
-
         return true
+    }
+
+    private hasLetter_(asciiCode: number): boolean {
+        return this.letters_.has(String.fromCharCode(asciiCode))
     }
 }
