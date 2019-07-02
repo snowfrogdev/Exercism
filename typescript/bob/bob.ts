@@ -1,53 +1,43 @@
 export default class Bob {
-    hey(sentence: string) {
-        sentence = sentence.trim()
+    hey(text: string) {
+        const utterance = new Utterance(text)
 
-        if (!sentence) {
+        if (utterance.isSilence()) {
             return 'Fine. Be that way!'
         }
 
-        if (sentence.endsWith('?')) {
-            if (!this.hasLowerCaseLetters_(sentence) && !this.hasNumbers_(sentence)) {
-                return 'Calm down, I know what I\'m doing!'
-            }
-            return 'Sure.'
+        if (utterance.isForcefulQuestion()) {
+            return 'Calm down, I know what I\'m doing!'
         }
 
-        if (!this.hasLowerCaseLetters_(sentence) && !this.hasUpperCaseLetters_(sentence)) {
-            return 'Whatever.'
-        }
-
-        if (!this.hasLowerCaseLetters_(sentence)) {
+        if (utterance.isShouting()) {
             return 'Whoa, chill out!'
+        }
+
+        if (utterance.isQuestion()) {
+            return 'Sure.'
         }
 
         return 'Whatever.'
     }
+}
 
-    private hasLowerCaseLetters_(sentence: string): boolean {
-        const ASCII_CODE_FOR_LOWER_CASE_A = 97
-        const ASCII_CODE_FOR_LOWER_CASE_Z = 122
-        return this.hasCharactersBetween_(ASCII_CODE_FOR_LOWER_CASE_A, ASCII_CODE_FOR_LOWER_CASE_Z, sentence)
+class Utterance {
+    constructor(private text_: string) {}
+
+    isSilence(): boolean {
+        return this.text_.trim() === ''
     }
 
-    private hasUpperCaseLetters_(sentence: string): boolean {
-        const ASCII_CODE_FOR_UPPER_CASE_A = 65
-        const ASCII_CODE_FOR_UPPER_CASE_Z = 90
-        return this.hasCharactersBetween_(ASCII_CODE_FOR_UPPER_CASE_A, ASCII_CODE_FOR_UPPER_CASE_Z, sentence)
+    isShouting(): boolean {
+        return this.text_ === this.text_.toUpperCase() && this.text_ !== this.text_.toLowerCase()
     }
 
-    private hasNumbers_(sentence: string): boolean {
-        const ASCII_CODE_FOR_0 = 48
-        const ASCII_CODE_FOR_9 = 57
-        return this.hasCharactersBetween_(ASCII_CODE_FOR_0, ASCII_CODE_FOR_9, sentence)
+    isQuestion(): boolean {
+        return this.text_.trim().endsWith('?')
     }
 
-    private hasCharactersBetween_(startingCharCode: number, endingCharCode: number, sentence: string): boolean {
-        for (let asciiCode = startingCharCode; asciiCode <= endingCharCode; asciiCode++) {
-            if (sentence.includes(String.fromCharCode(asciiCode))) {
-                return true
-            }
-        }
-        return false
+    isForcefulQuestion(): boolean {
+        return this.isShouting() && this.isQuestion()
     }
 }
