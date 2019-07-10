@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}\\typescript\\rna-transcription\\rna-transcription.test.ts",
+            "program": "${workspaceFolder}\\typescript\\twelve-days\\twelve-days.test.ts",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
