@@ -1,6 +1,11 @@
 class Isogram {
-    static isIsogram( /* Parameters go here */ ) {
-        // Your code here
+    static isIsogram(word: string) {
+        const lettersFromWord = word.match(/[A-Za-z]/g)
+        if (!lettersFromWord) {
+            return true
+        }
+        const lettersFromWordLowerCase = lettersFromWord.join('').toLowerCase()
+        return lettersFromWordLowerCase.length === new Set(lettersFromWordLowerCase).size
     }
 }
 
