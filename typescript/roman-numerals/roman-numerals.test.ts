@@ -6,32 +6,32 @@ describe('RomanNumerals', () => {
     expect(RomanNumerals.roman(1)).toEqual(expected)
   })
 
-  xit('2 is two I\'s', () => {
+  it('2 is two I\'s', () => {
     const expected = 'II'
     expect(RomanNumerals.roman(2)).toEqual(expected)
   })
 
-  xit('3 is three I\'s', () => {
+  it('3 is three I\'s', () => {
     const expected = 'III'
     expect(RomanNumerals.roman(3)).toEqual(expected)
   })
 
-  xit('4, being 5 - 1, is IV', () => {
+  it('4, being 5 - 1, is IV', () => {
     const expected = 'IV'
     expect(RomanNumerals.roman(4)).toEqual(expected)
   })
 
-  xit('5 is a single V', () => {
+  it('5 is a single V', () => {
     const expected = 'V'
     expect(RomanNumerals.roman(5)).toEqual(expected)
   })
 
-  xit('6, being 5 + 1, is VI', () => {
+  it('6, being 5 + 1, is VI', () => {
     const expected = 'VI'
     expect(RomanNumerals.roman(6)).toEqual(expected)
   })
 
-  xit('9, being 10 - 1, is IX', () => {
+  it('9, being 10 - 1, is IX', () => {
     const expected = 'IX'
     expect(RomanNumerals.roman(9)).toEqual(expected)
   })
