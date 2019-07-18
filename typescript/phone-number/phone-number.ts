@@ -9,12 +9,10 @@ export default class PhoneNumber {
         return digits.join('')
       }
       if (digits.length === 11 && digits[0] === '1') {
-          digits.shift()
-          return digits.join('')
+        digits.shift()
+        return digits.join('')
       }
     }
     return
   }
-
-
 }
