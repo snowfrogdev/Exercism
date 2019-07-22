@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}\\typescript\\twelve-days\\twelve-days.test.ts",
+            "program": "${workspaceFolder}\\typescript\\two-bucket\\two-bucket.test.ts",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]

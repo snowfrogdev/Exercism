@@ -6,7 +6,7 @@ describe('TwoBucket', () => {
     const buckTwo = 5
     const goal = 1
 
-    test('starting with bucket one', () => {
+    test.only('starting with bucket one', () => {
       const starterBuck = Bucket.One // indicates which bucket to fill first
       const twoBucket = new TwoBucket(buckOne, buckTwo, goal, starterBuck)
       expect(twoBucket.moves()).toEqual(4) // includes the first fill
