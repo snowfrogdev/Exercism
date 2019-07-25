@@ -1,7 +1,8 @@
 {
     "compilerOptions": { 
-        "target": "es2017",
+        "target": "esnext",
         "module": "commonjs",
+        "lib": ["esnext"],
         "alwaysStrict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
