@@ -6,19 +6,19 @@ describe('say', () => {
     expect(say.inEnglish(0)).toBe('zero')
   })
 
-  xit('one', () => {
+  it('one', () => {
     expect(say.inEnglish(1)).toBe('one')
   })
 
-  xit('fourteen', () => {
+  it('fourteen', () => {
     expect(say.inEnglish(14)).toBe('fourteen')
   })
 
-  xit('twenty', () => {
+  it('twenty', () => {
     expect(say.inEnglish(20)).toBe('twenty')
   })
 
-  xit('twenty-two', () => {
+  it('twenty-two', () => {
     expect(say.inEnglish(22)).toBe('twenty-two')
   })
 
