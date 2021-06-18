@@ -16,13 +16,11 @@ pub fn verse(n: u32) -> String {
         }
 
         _ => {
-            format!(
-                "{n} bottles of beer on the wall, {n} bottles of beer.\n",
-                n = n
-            ) + &format!(
-                "Take one down and pass it around, {} bottles of beer on the wall.\n",
-                n - 1
-            )
+            format!("{0} bottles of beer on the wall, {0} bottles of beer.\n", n)
+                + &format!(
+                    "Take one down and pass it around, {} bottles of beer on the wall.\n",
+                    n - 1
+                )
         }
     }
 }
