@@ -1,6 +1,6 @@
 use std::fmt::{Debug, Display};
 
-use chrono::NaiveTime;
+use chrono::{Duration, NaiveTime};
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Clock {
@@ -9,8 +9,10 @@ pub struct Clock {
 
 impl Clock {
     pub fn new(hours: i32, minutes: i32) -> Self {
+        let time = hours * 60 + minutes;
+
         Clock {
-            time: NaiveTime::from_hms(hours as u32, minutes as u32, 0),
+            time: NaiveTime::from_hms(0, 0, 0) + Duration::minutes(time as i64),
         }
     }
 
