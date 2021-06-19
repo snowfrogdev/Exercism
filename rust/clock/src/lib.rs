@@ -1,6 +1,5 @@
-use std::fmt::{Debug, Display};
-
 use chrono::{Duration, NaiveTime};
+use std::fmt::{Debug, Display};
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Clock {
@@ -18,7 +17,7 @@ impl Clock {
 
     pub fn add_minutes(&mut self, minutes: i32) -> Self {
         Clock {
-            time: self.time + Duration::minutes(minutes as i64)
+            time: self.time + Duration::minutes(minutes as i64),
         }
     }
 }
