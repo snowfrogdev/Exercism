@@ -1,15 +1,18 @@
-use std::collections::HashSet;
+use std::u32;
 
 pub fn sum_of_multiples(limit: u32, factors: &[u32]) -> u32 {
-    let mut multiples = HashSet::new();
+    (1..limit).filter(|i| i.is_multiple_of(factors)).sum()
+}
 
-    for factor in factors {
-        let mut multiple = *factor;
-        while multiple != 0 && multiple < limit {
-            multiples.insert(multiple);
-            multiple += factor;
-        }
+trait MultipleOf {
+    fn is_multiple_of(&self, factors: &[u32]) -> bool;
+}
+
+impl MultipleOf for u32 {
+    fn is_multiple_of(&self, factors: &[u32]) -> bool {
+        factors
+            .iter()
+            .filter(|&&i| i != 0)
+            .any(|factor| self % factor == 0)
     }
-
-    multiples.iter().sum()
 }
