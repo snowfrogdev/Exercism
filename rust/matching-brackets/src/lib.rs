@@ -3,22 +3,10 @@ pub fn brackets_are_balanced(string: &str) -> bool {
 
     for c in string.chars() {
         match c {
-            '(' | '{' | '[' => brackets.push(c),
-            ')' => {
-                if brackets.pop() != Some('(') {
-                    return false;
-                }
-            }
-            '}' => {
-                if brackets.pop() != Some('{') {
-                    return false;
-                }
-            }
-            ']' => {
-                if brackets.pop() != Some('[') {
-                    return false;
-                }
-            }
+            '(' => brackets.push(')'),
+            '{' => brackets.push('}'),
+            '[' => brackets.push(']'),
+            ')' | '}' | ']' if brackets.pop() != Some(c) => return false,
             _ => (),
         }
     }
