@@ -10,15 +10,15 @@ impl From<u64> for Duration {
 
 macro_rules! planets {
     ($($name:ident => $earth_years:expr),*) => {
-            $(
-                pub struct $name;
+        $(
+            pub struct $name;
 
-                impl $name {
-                    pub fn years_during(d: &Duration) -> f64 {
-                        d.0 / $earth_years as f64
-                    }
+            impl $name {
+                pub fn years_during(d: &Duration) -> f64 {
+                    d.0 / $earth_years as f64
                 }
-            )*
+            }
+        )*
 
     };
 }
