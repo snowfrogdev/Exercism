@@ -7,25 +7,20 @@ pub enum Comparison {
 }
 
 pub fn sublist<T: PartialEq>(first_list: &[T], second_list: &[T]) -> Comparison {
-    if first_list.len() == second_list.len() {
-        if first_list.iter().eq(second_list.iter()) { return Comparison::Equal }
-        else { return Comparison::Unequal }
+    match first_list.len() {
+        len if len == second_list.len() && first_list.iter().eq(second_list.iter()) => Comparison::Equal,
+        len if len > second_list.len() && second_list.is_sublist_of(first_list) => Comparison::Superlist,
+        _ if first_list.is_sublist_of(second_list) => Comparison::Sublist,
+        _ => Comparison::Unequal
     }
-
-    if first_list.len() > second_list.len() {
-        if second_list.is_empty() || is_sublist(second_list, first_list,) { return Comparison::Superlist }
-    }
-
-    if first_list.is_empty() || is_sublist(first_list, second_list) { return Comparison::Sublist }
-
-    
-
-    Comparison::Unequal
 }
 
-fn is_sublist<T: PartialEq>(smaller_list: &[T], larger_list: &[T]) -> bool {
-    larger_list
-    .windows(smaller_list.len())
-    .any(|window| window == smaller_list)
+trait Sublist<T: PartialEq> {
+    fn is_sublist_of(&self, other: &[T]) -> bool;
 }
 
+impl<T: PartialEq> Sublist<T> for [T] {
+    fn is_sublist_of(&self, other: &[T]) -> bool {
+        self.is_empty() || other.windows(self.len()).any(|window| window == self)
+    }
+}
