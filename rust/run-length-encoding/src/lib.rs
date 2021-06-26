@@ -1,3 +1,7 @@
+use std::cmp::Ordering;
+
+use regex::Regex;
+
 pub fn encode(source: &str) -> String {
     let mut result = String::new();
 
@@ -9,11 +13,13 @@ pub fn encode(source: &str) -> String {
             continue;
         }
 
-        if last_count == 1 {
-            result.push(last.unwrap());
-        } else if last_count > 1 {
-            result.push_str(&last_count.to_string());
-            result.push(last.unwrap());
+        match last_count.cmp(&1) {
+            Ordering::Equal => result.push(last.unwrap()),
+            Ordering::Greater => {
+                result.push_str(&last_count.to_string());
+                result.push(last.unwrap());
+            }
+            Ordering::Less => (),
         }
 
         last = Some(c);
@@ -24,5 +30,16 @@ pub fn encode(source: &str) -> String {
 }
 
 pub fn decode(source: &str) -> String {
-    unimplemented!("Return the run-length decoding of {}.", source);
+    let mut result = String::new();
+
+    let re = Regex::new(r"(\d*)([a-zA-Z]|\s)").unwrap();
+    for cap in re.captures_iter(source) {
+        if cap[1].is_empty() {
+            result.push_str(&cap[2]);
+        } else {
+            (0..cap[1].parse::<u32>().unwrap()).for_each(|_| result.push_str(&cap[2]));
+        }
+    }
+
+    result
 }
