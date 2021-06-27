@@ -32,7 +32,6 @@ fn test_invalid_isbn_with_invalid_X() {
 }
 
 #[test]
-#[ignore]
 fn test_valid_isbn_without_dashes() {
     assert!(is_valid_isbn("3598215088"));
 }
