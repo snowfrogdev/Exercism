@@ -22,6 +22,18 @@ pub fn classify(num: u64) -> Option<Classification> {
 }
 
 fn factors(n: u64) -> Vec<u64> {
-    (1..n).filter(|i| n % i == 0).collect()
+    let mut factors = vec![1];
+    let mut i = 2;
+    while i * i <= n {
+        if n % i == 0 {
+            factors.push(i);
+            if i * i != n {
+                factors.push(n / i);
+            }
+        }
+        i += 1;
+    }
+
+    factors
 }
 
