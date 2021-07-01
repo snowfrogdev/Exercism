@@ -1,19 +1,28 @@
-pub struct Triangle;
+use std::ops::Add;
 
-impl Triangle {
-    pub fn build(sides: [u64; 3]) -> Option<Triangle> {
-        unimplemented!("Construct new Triangle from following sides: {:?}. Return None if the sides are invalid.", sides);
+pub struct Triangle<T: Add<Output = T> + PartialOrd + Copy>(T, T, T);
+
+impl<T: Add<Output = T> + PartialOrd + Copy> Triangle<T> {
+    pub fn build(sides: [T; 3]) -> Option<Triangle<T>> {
+        if sides[0] + sides[1] > sides[2]
+            && sides[1] + sides[2] > sides[0]
+            && sides[2] + sides[0] > sides[1]
+        {
+            Some(Triangle(sides[0], sides[1], sides[2]))
+        } else {
+            None
+        }
     }
 
     pub fn is_equilateral(&self) -> bool {
-        unimplemented!("Determine if the Triangle is equilateral.");
+        self.0 == self.1 && self.1 == self.2
     }
 
     pub fn is_scalene(&self) -> bool {
-        unimplemented!("Determine if the Triangle is scalene.");
+        self.0 != self.1 && self.1 != self.2 && self.2 != self.0
     }
 
     pub fn is_isosceles(&self) -> bool {
-        unimplemented!("Determine if the Triangle is isosceles.");
+        self.0 == self.1 || self.1 == self.2 || self.2 == self.0
     }
 }
