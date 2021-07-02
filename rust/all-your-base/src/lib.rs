@@ -22,7 +22,7 @@ pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>,
     loop {
         result.push(quotient % to_base);
         quotient /= to_base;
-        if quotient <= 0 {
+        if quotient == 0 {
             break;
         }
     }
