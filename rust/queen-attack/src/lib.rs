@@ -19,8 +19,8 @@ impl Queen {
     }
 
     pub fn can_attack(&self, other: &Queen) -> bool {
-        self.0 .0 == other.0 .0
-            || self.0 .1 == other.0 .1
-            || (self.0 .0 - other.0 .0).abs() == (self.0 .1 - other.0 .1).abs()
+        let dx = self.0 .0 - other.0 .0;
+        let dy = self.0 .1 - other.0 .1;
+        dx == 0 || dy == 0 || dx.abs() == dy.abs()
     }
 }
