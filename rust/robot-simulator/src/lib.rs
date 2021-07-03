@@ -19,35 +19,36 @@ pub struct Robot {
 
 impl Robot {
     pub fn new(x: i32, y: i32, d: Direction) -> Self {
-        Robot {
+        Self {
             direction: d,
             position: (x, y),
         }
     }
 
-    pub fn turn_right(mut self) -> Self {
-        self.direction =
-            FromPrimitive::from_i32((self.direction as i32 + 1).mod_floor(&4)).unwrap();
-        self
+    pub fn turn_right(self) -> Self {
+        Self {
+            direction: FromPrimitive::from_i32((self.direction as i32 + 1).mod_floor(&4)).unwrap(),
+            ..self
+        }
     }
 
-    pub fn turn_left(mut self) -> Self {
-        self.direction =
-            FromPrimitive::from_i32((self.direction as i32 - 1).mod_floor(&4)).unwrap();
-        self
+    pub fn turn_left(self) -> Self {
+        Self {
+            direction: FromPrimitive::from_i32((self.direction as i32 - 1).mod_floor(&4)).unwrap(),
+            ..self
+        }
     }
 
-    pub fn advance(mut self) -> Self {
+    pub fn advance(self) -> Self {
         let (x, y) = self.position;
-        let new_position = match self.direction {
+        let position = match self.direction {
             Direction::North => (x, y + 1),
             Direction::East => (x + 1, y),
             Direction::South => (x, y - 1),
             Direction::West => (x - 1, y),
         };
 
-        self.position = new_position;
-        self
+        Self { position, ..self }
     }
 
     pub fn instructions(mut self, instructions: &str) -> Self {
