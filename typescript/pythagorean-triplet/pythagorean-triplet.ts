@@ -1,4 +1,4 @@
-export default class Triplet {
+class Triplet {
   constructor(private a_: number, private b_: number, private c_: number) {}
 
   static where(n: number, start?: number, filter?: number): Triplet[] {
@@ -29,4 +29,12 @@ export default class Triplet {
   isPythagorean(): boolean {
     return this.a_ ** 2 + this.b_ ** 2 === this.c_ ** 2
   }
+
+  get values(): [number, number, number] {
+    return [this.a_, this.b_, this.c_];
+  }
+}
+
+export function tripletsWithSum(sum: number): [number, number, number][] {
+  return Triplet.where(sum).map(triplet => triplet.values);
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@exercism/typescript-pythagorean-triplet",
+  "name": "@exercism/typescript-resistor-color-duo",
   "version": "1.0.0",
   "description": "Exercism exercises in Typescript.",
   "private": true,
@@ -23,9 +23,9 @@
     "typescript": "^4.5.4"
   },
   "scripts": {
-    "test": "yarn lint:types && jest --no-cache",
-    "lint": "yarn lint:types && yarn lint:ci",
-    "lint:types": "yarn tsc --noEmit -p .",
+    "test": "lint:types && jest --no-cache",
+    "lint": "lint:types && lint:ci",
+    "lint:types": "tsc --noEmit -p .",
     "lint:ci": "eslint . --ext .tsx,.ts"
   }
 }
