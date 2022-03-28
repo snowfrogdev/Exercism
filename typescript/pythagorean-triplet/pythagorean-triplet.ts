@@ -1,40 +1,32 @@
+interface TripletsParams {
+  sum: number;
+  minFactor?: number;
+  maxFactor?: number;
+}
 class Triplet {
-  constructor(private a_: number, private b_: number, private c_: number) {}
+  constructor(public a: number, public b: number, public c: number) {}
 
-  static where(n: number, start?: number, filter?: number): Triplet[] {
-    const triplets: Triplet[] = []
-    for (let a = start || 1; a < n - 1; a++) {
-      for (let b = a; b < n; b++) {
-        const c = Math.sqrt(a * a + b * b)
-        if (c % 1 === 0) {
-          triplets.push(new Triplet(a, b, c))
-        }
-      }
-    }
-
-    if (filter) {
-      return triplets.filter((triplet) => triplet.sum() === filter)
-    }
-    return  triplets
-  }
-
-  sum(): number {
-    return this.a_ + this.b_ + this.c_
-  }
-
-  product(): number {
-    return this.a_ * this.b_ * this.c_
-  }
-
-  isPythagorean(): boolean {
-    return this.a_ ** 2 + this.b_ ** 2 === this.c_ ** 2
-  }
-
-  get values(): [number, number, number] {
-    return [this.a_, this.b_, this.c_];
+  toArray(): [number, number, number] {
+    return [this.a, this.b, this.c];
   }
 }
 
-export function tripletsWithSum(sum: number): [number, number, number][] {
-  return Triplet.where(sum).map(triplet => triplet.values);
+export function triplets(params: TripletsParams): Triplet[] {
+  const N = params.sum;
+  const minFactor = Math.max(1, params.minFactor ?? 0);
+  const maxFactor = (i: number): number =>
+    Math.min(N / i, params.maxFactor ?? Infinity);
+  const result: Triplet[] = [];
+
+  for (let a = minFactor; a <= maxFactor(3); a++) {
+    for (let b = a + 1; b <= maxFactor(2); b++) {
+      const c = N - a - b;
+      if (c > maxFactor(1)) continue;
+      if (a * a + b * b === c * c) {
+        result.push(new Triplet(a, b, c));
+      }
+    }
+  }
+
+  return result;
 }
