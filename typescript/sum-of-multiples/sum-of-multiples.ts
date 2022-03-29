@@ -1,21 +1,11 @@
-export default function SumOfMultiples(nums: number[]) {
-  return {
-
-    to: (num: number): number => {
-      const multiples: Set<number> = new Set()
-
-      nums.forEach((n) => {
-        for (let i = 1; i < Infinity; i++) {
-          const multiple = n * i
-          if (multiple >= num) {
-            break
-          }
-          multiples.add(multiple)
-        }
-      })
-
-      return [...multiples].reduce((p, c) => p + c, 0)
-    }
-
+export const sum = (nums: number[], ceiling: number): number => {
+  const multiples: Set<number> = new Set();
+  for (let i = 1; i < ceiling; i++) {
+    nums.forEach(num => {
+      if (i % num === 0) {
+        multiples.add(i);
+      }
+    })
   }
-}
+  return [...multiples].reduce((p, c) => p + c, 0);
+};
